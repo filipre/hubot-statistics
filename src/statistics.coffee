@@ -1,22 +1,37 @@
 # Description
 #   A hubot script that provides statistics about the hubot instance in a json format
 #
-# Configuration:
-#   LIST_OF_ENV_VARS_TO_SET
-#
-# Commands:
-#   hubot hello - <what the respond trigger does>
-#   orly - <what the hear trigger does>
-#
 # Notes:
-#   <optional notes required for the script>
+#   You may want to use http://www.repo-board.io/
 #
 # Author:
 #   René Filip <rene.filip@sap.com>
 
-module.exports = (robot) ->
-  robot.respond /hello/, (res) ->
-    res.reply "hello!"
+getName = (robot) ->
+  return robot.name
 
-  robot.hear /orly/, ->
-    res.send "yarly"
+getAdapter = (robot) ->
+  return robot.adapterName
+
+getVersion = (robot) ->
+  return robot.version
+
+getCommands = (robot) ->
+  return robot.commands.length
+
+module.exports = (robot) ->
+
+  robot.router.get '/hubot/statistics', (req, res) ->
+    res.json 'text': 'not supported yet'
+
+  robot.router.get '/hubot/statistics/name', (req, res) ->
+    res.json 'text': getName robot
+
+  robot.router.get '/hubot/statistics/adapter', (req, res) ->
+    res.json 'text': getAdapter robot
+
+  robot.router.get '/hubot/statistics/version', (req, res) ->
+    res.json 'text': getVersion robot
+
+  robot.router.get '/hubot/statistics/commands', (req, res) ->
+    res.json 'text': getCommands robot
