@@ -22,7 +22,7 @@ All statistics in one json file. For example:
 }
 ```
 
-#### [/hubot/statistics/:name](src/statistics/)
+#### [/hubot/statistics/:name](src/statistics.coffee)
 
 Simple json with `text` property:
 
