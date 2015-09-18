@@ -7,6 +7,8 @@
 # Author:
 #   René Filip <rene.filip@sap.com>
 
+moment = require 'moment'
+
 getName = (robot) ->
   return robot.name
 
@@ -19,7 +21,20 @@ getVersion = (robot) ->
 getCommands = (robot) ->
   return robot.commands.length
 
+saveCurrentTime = (robot) ->
+  robot.brain.data.statistics = {
+    online: moment().format 'MMMM Do YYYY, h:mm a'
+  }
+
+getOnline = (robot) ->
+  return "Online since #{robot.brain.data.statistics.online}"
+
 module.exports = (robot) ->
+
+  # set current time if script (and brain) have started
+  saveCurrentTime robot
+
+  # Router:
 
   robot.router.get '/hubot/statistics', (req, res) ->
     res.json 'text': 'not supported yet'
@@ -35,3 +50,6 @@ module.exports = (robot) ->
 
   robot.router.get '/hubot/statistics/commands', (req, res) ->
     res.json 'text': getCommands robot
+
+  robot.router.get '/hubot/statistics/online', (req, res) ->
+    res.json 'text': getOnline robot
