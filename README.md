@@ -14,15 +14,19 @@ All statistics in one json file. For example:
 
 ```json
 {
-  "name": "Hubot's name",
-  "version": "Hubot's version from package.json",
-  "commands": "count of commands",
-  "adapter": "Adapter used for Hubot",
-  "...": "..."
+  "adapter": {
+    "text": "slack"
+  },
+  "commands": {
+    "text": 18,
+    "commands": [
+      "..."
+    ]
+  }
 }
 ```
 
-#### [/hubot/statistics/:name](src/statistics.coffee)
+#### [/hubot/statistics/:name](src/statistics/)
 
 Simple json with `text` property:
 

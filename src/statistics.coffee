@@ -18,8 +18,16 @@ module.exports = (robot) ->
     if statistic.onStart?
       statistic.onStart(robot)
 
-    # Provide data
+    # Provide specific data
     if statistic.provide?
       robot.router.get '/hubot/statistics/' + name, do (statistic) ->
         (req, res) ->
           res.json statistic.provide(robot)
+
+  # Provide all data in one json file
+  robot.router.get '/hubot/statistics', (req, res) ->
+    stats = {}
+    for name, statistic of statistics
+      if statistic.provide?
+        stats[name] = statistic.provide(robot)
+    res.json stats
