@@ -10,8 +10,6 @@ See [`src/statistics.coffee`](src/statistics.coffee) for full documentation.
 
 All statistics in one json file. For example:
 
-*not provided yet*
-
 ```json
 {
   "adapter": {
