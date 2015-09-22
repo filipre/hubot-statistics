@@ -7,49 +7,19 @@
 # Author:
 #   René Filip <rene.filip@sap.com>
 
-moment = require 'moment'
-
-getName = (robot) ->
-  return robot.name
-
-getAdapter = (robot) ->
-  return robot.adapterName
-
-getVersion = (robot) ->
-  return robot.version
-
-getCommands = (robot) ->
-  return robot.commands.length
-
-saveCurrentTime = (robot) ->
-  robot.brain.data.statistics = {
-    online: moment().format 'MMMM Do YYYY, h:mm a'
-  }
-
-getOnline = (robot) ->
-  return "Online since #{robot.brain.data.statistics.online}"
+requireDir = require 'require-dir'
+statistics = requireDir './statistics'
 
 module.exports = (robot) ->
 
-  # set current time if script (and brain) have started
-  saveCurrentTime robot
+  for name, statistic of statistics
 
-  # Router:
+    # Execute Start routines
+    if statistic.onStart?
+      statistic.onStart(robot)
 
-  robot.router.get '/hubot/statistics', (req, res) ->
-    res.json 'text': 'not supported yet'
-
-  robot.router.get '/hubot/statistics/name', (req, res) ->
-    res.json 'text': getName robot
-
-  robot.router.get '/hubot/statistics/adapter', (req, res) ->
-    res.json 'text': getAdapter robot
-
-  robot.router.get '/hubot/statistics/version', (req, res) ->
-    res.json 'text': getVersion robot
-
-  robot.router.get '/hubot/statistics/commands', (req, res) ->
-    res.json 'text': getCommands robot
-
-  robot.router.get '/hubot/statistics/online', (req, res) ->
-    res.json 'text': getOnline robot
+    # Provide data
+    if statistic.provide?
+      robot.router.get '/hubot/statistics/' + name, do (statistic) ->
+        (req, res) ->
+          res.json statistic.provide(robot)

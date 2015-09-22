@@ -1,7 +1,7 @@
 {
   "name": "hubot-statistics",
   "description": "A hubot script that provides statistics about the hubot instance in a json format",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "author": "René Filip <rene.filip@sap.com>",
   "license": "MIT",
   "keywords": "hubot, hubot-scripts, statistics, dashboard, version, monitoring",
@@ -13,7 +13,8 @@
     "url": "https://github.com/hubot-scripts/hubot-statistics/issues"
   },
   "dependencies": {
-    "moment": "^2.10.6"
+    "moment": "^2.10.6",
+    "require-dir": "^0.3.0"
   },
   "peerDependencies": {
     "hubot": "2.x"
