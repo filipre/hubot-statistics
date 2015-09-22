@@ -22,12 +22,12 @@ module.exports = (robot) ->
     if statistic.provide?
       robot.router.get '/hubot/statistics/' + name, do (statistic) ->
         (req, res) ->
-          res.json statistic.provide(robot)
+          res.json statistic.provide(robot, req, res)
 
   # Provide all data in one json file
   robot.router.get '/hubot/statistics', (req, res) ->
     stats = {}
     for name, statistic of statistics
       if statistic.provide?
-        stats[name] = statistic.provide(robot)
+        stats[name] = statistic.provide(robot, req, res)
     res.json stats
