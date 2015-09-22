@@ -14,7 +14,8 @@
   },
   "dependencies": {
     "moment": "^2.10.6",
-    "require-dir": "^0.3.0"
+    "require-dir": "^0.3.0",
+    "string-hash": "^1.1.0"
   },
   "peerDependencies": {
     "hubot": "2.x"
