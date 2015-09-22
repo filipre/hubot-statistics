@@ -1,6 +1,9 @@
 # Description
 #   A hubot script that provides statistics about the hubot instance in a json format
 #
+# Commands:
+#   hubot cmdlogger reset - Reset all logged commands data
+#
 # Notes:
 #   You may want to use http://www.repo-board.io/
 #
