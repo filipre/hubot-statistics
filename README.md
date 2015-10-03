@@ -1,6 +1,6 @@
 # hubot-statistics
 
-A hubot script that provides statistics about the hubot instance in a json format
+A hubot script that provides statistics about the hubot instance in a json format. You may want to use [http://www.repo-board.io/](http://www.repo-board.io/)
 
 See [`src/statistics.coffee`](src/statistics.coffee) for full documentation.
 
@@ -34,8 +34,6 @@ Simple json with `text` property:
 }
 ```
 
-<!--
-
 ## Installation
 
 In hubot project repo, run:
@@ -49,12 +47,3 @@ Then add **hubot-statistics** to your `external-scripts.json`:
   "hubot-statistics"
 ]
 ```
-
-## Sample Interaction
-
-```
-user1>> hubot hello
-hubot>> hello!
-```
-
--->
